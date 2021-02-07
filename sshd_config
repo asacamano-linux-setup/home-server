@@ -8,6 +8,9 @@ HostbasedAuthentication no
 IgnoreUserKnownHosts yes
 IgnoreRhosts yes
 
+# Whateves
+PrintMotd no
+
 # Don't cheat Fail2Ban or sshguard, but allow fallback
 MaxAuthTries 2
 
@@ -18,11 +21,13 @@ AcceptEnv LANG LC_*
 AllowTcpForwarding yes
 X11Forwarding yes
 
-# override default of no subsystems
+# Default sftp
 # Subsystem	sftp	/usr/lib/openssh/sftp-server
 
+# Allow public key, or password+otp
+AuthenticationMethods publickey keyboard-interactive
 PubkeyAuthentication yes
 AuthorizedKeysFile	.ssh/authorized_keys
-ChallengeResponseAuthentication no
+# Also allow passwords with TOTP 2nd Factor
+ChallengeResponseAuthentication yes
 UsePAM yes
-PrintMotd no

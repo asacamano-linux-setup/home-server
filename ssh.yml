@@ -13,10 +13,19 @@
     backup: true
   register: sshd_config
 
+- name: Google authenticator TOTP PAM module
+  package:
+    name: libpam-google-authenticator
+    state: present
+
+- name: pam config for TOTP
+  lineinfile:
+    dest: "/etc/pam.d/sshd"
+    line: auth required pam_google_authenticator.so
+    insertafter: EOF
+
 - name: restart sshd on change
   service:
     name: sshd
     state: restarted
   when: sshd_config.changed
-
-
