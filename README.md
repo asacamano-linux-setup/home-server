@@ -1,2 +1,3 @@
 # home-server
-Home gateway server setup
+
+Home gateway server setup.

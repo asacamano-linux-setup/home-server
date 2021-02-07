@@ -1,0 +1,5 @@
+- name: Update DuckDns
+  ansible.builtin.cron:
+    name: "Update DuckDns"
+    minute: "3-58/5"
+    job: 'echo url="https://www.duckdns.org/update?domains={{ duck_dns_domain }}&token={{ duck_dns_key }}&ip=" | curl -k -o ~/duckdns/duck.log -K -'

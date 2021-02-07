@@ -1,0 +1,22 @@
+- name: opensshd package
+  package:
+    name: openssh-server
+    state: present
+
+- name: Set up .sshd_config file
+  template:
+    dest: "/etc/ssh/sshd_config"
+    src: sshd_config
+    owner:  "root"
+    group:  "root"
+    mode: 0444
+    backup: true
+  register: sshd_config
+
+- name: restart sshd on change
+  service:
+    name: sshd
+    state: restarted
+  when: sshd_config.changed
+
+

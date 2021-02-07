@@ -1,0 +1,28 @@
+# Only let the rigt users in (I see you admin/password)
+AllowUsers {{ target_user }} {% if sshd_other_users != "none" %}{{ sshd_other_users }}{% endif %}
+
+# Doh: simple seuurity rules
+PermitRootLogin no
+PermitEmptyPasswords no
+HostbasedAuthentication no
+IgnoreUserKnownHosts yes
+IgnoreRhosts yes
+
+# Don't cheat Fail2Ban or sshguard, but allow fallback
+MaxAuthTries 2
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# Sometimes you just have to hack yourself
+AllowTcpForwarding yes
+X11Forwarding yes
+
+# override default of no subsystems
+# Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+PubkeyAuthentication yes
+AuthorizedKeysFile	.ssh/authorized_keys
+ChallengeResponseAuthentication no
+UsePAM yes
+PrintMotd no

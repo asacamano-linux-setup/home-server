@@ -1,0 +1,40 @@
+- name: fail2ban package
+  package:
+    name: fail2ban
+    state: present
+
+- name: Set up fail2ban 
+  register: fail2ban_config
+  blockinfile:
+    dest: "/etc/fail2ban/jail.d/jail.local"
+    create: true
+    owner:  "root"
+    group:  "root"
+    mode: 0444
+    backup: false
+    block: |
+      [DEFAULT]
+      ignoreip = 127.0.0.1/8 ::1 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
+
+    #
+    #- name: Set up SSH guard base config
+    #register: sshguard_config
+    #blockinfile:
+    #create: true
+    #dest: "/etc/sshguard/sshguard.conf"
+    #owner:  "root"
+    #group:  "root"
+    #mode: 0444
+    #backup: true
+    #marker_begin: Common sshguard.conf
+    #marker_end: End common sshguard.conf
+    #marker: '# {mark}'
+    #block: |
+
+- name: restart fail2ban on change
+  service:
+    name: fail2ban
+    state: restarted
+  when: fail2ban_config.changed
+
+
