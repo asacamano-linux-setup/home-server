@@ -1,5 +1,24 @@
 # home-server
 
-Home gateway server setup. SSH, Fail2Ban, etc.
+Home gateway server that has some ports open to the public internet. SSH,
+Fail2Ban, WireGuard.
 
-Don't forget to run setup-totop-file.sh for the user that wants ssh access, and only use keys from devices with encrypted filesystems, like Android or Chrome.
+## WARNING
+
+**Only install public keys from devices with encrypted drives and trusted boot
+such as Android, iPhone, Chrome.**
+
+## Motiviations
+
+1. Secure SSH from any device (ssh with password + TOTP)
+1. Easy SSH from trusted devices (ssh with public key, but only from devices
+   with encrypted drives and secure boot, so Android and Chrome.)
+1. Discourage script kiddies - using Fail2Ban.
+1. Full VPN access from trusted devices
+
+## Extra install steps
+
+* Don't forget to run `public/bin/setup-totp-file.sh` for each user that wants
+  ssh access. This sets up TOTP (2FA codes) - so have a cient ready to scan the
+  ASCII QR code.
+
