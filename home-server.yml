@@ -6,5 +6,6 @@
       include_tasks: "{{ item }}"
       loop:
         - duckdns.yml
-        - ssh.yml
         - fail2ban.yml
+        - ssh.yml
+        - wireguard.yml
