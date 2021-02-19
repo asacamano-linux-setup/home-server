@@ -19,6 +19,6 @@ such as Android, iPhone, Chrome.**
 ## Extra install steps
 
 * Don't forget to run `public/bin/setup-totp-file.sh` for each user that wants
-  ssh access. This sets up TOTP (2FA codes) - so have a cient ready to scan the
+  ssh access. This sets up TOTP (2FA codes) - so have a client ready to scan the
   ASCII QR code.
 
