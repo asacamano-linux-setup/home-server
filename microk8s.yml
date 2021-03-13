@@ -1,0 +1,9 @@
+- name: Install microk8s snap
+  shell:
+    cmd: "/usr/bin/snap install microk8s --classic && touch {{ target_home }}/.sync/microk8s-installed"
+    creates: "{{ target_home }}/.sync/microk8s-installed"
+
+- name: Setup microk8s components
+  shell: "microk8s enable dns ha-cluster ingress istio metrics-server registry storage && touch {{ target_home }}/.sync/microk8s-components-enabled"
+  args:
+    creates: "{{ target_home }}/.sync/microk8s-components-enabled"

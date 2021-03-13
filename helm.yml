@@ -1,0 +1,18 @@
+- name: Add helm apt-signing key
+  when: ansible_distribution == 'Ubuntu'
+  ansible.builtin.apt_key:
+    file: helm-signing.asc
+    state: present
+
+- name: Add helm repo
+  when: ansible_distribution == 'Ubuntu'
+  ansible.builtin.apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+    state: present
+
+- name: Install helm
+  when: ansible_distribution == 'Ubuntu'
+  ansible.builtin.package:
+    name: helm
+    state: present
+

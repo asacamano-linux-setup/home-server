@@ -9,3 +9,6 @@
         - fail2ban.yml
         - ssh.yml
         - wireguard.yml
+        - docker.yml
+        - microk8s.yml
+        - helm.yml

@@ -76,5 +76,5 @@
 
 - name: update sysctl
   shell: "sysctl -p"
-  register: wireguard_forwarding
+  when: wireguard_forwarding.changed
 
