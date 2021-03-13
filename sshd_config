@@ -12,7 +12,7 @@ IgnoreRhosts yes
 PrintMotd no
 
 # Don't cheat Fail2Ban or sshguard, but allow fallback
-MaxAuthTries 2
+MaxAuthTries 5
 
 # Allow client to pass locale environment variables
 AcceptEnv LANG LC_*
